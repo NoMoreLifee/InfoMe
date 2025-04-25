@@ -324,23 +324,7 @@
             </a>
         </div>
         
-     <div class="controls"> 
-            <div id="visitorCount">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <defs>
-                        <linearGradient id="eyeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#0049E5" />
-                            <stop offset="100%" stop-color="#00e5ff" />
-                        </linearGradient>
-                    </defs>
-                    <path d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/>
-                </svg>
-                <span class="count">0</span>
-                <div class="visitor-ping"></div>
-            </div>
 
-        </div>
-    </div>
 
     <audio id="backgroundMusic" loop>
         <source src="https://cdn.discordapp.com/attachments/1133001504614252664/1162213280937418844/x2mate.com_-_-_Mostafa_Elnesr_-_ANA_Z3LTK_Official_Audio_128_kbps.mp3" type="audio/mpeg">
@@ -355,29 +339,6 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        const API_URL = 'https://planned-datha-nomorelife-6c3891cb.koyeb.app/visit';
-
-let clientId = localStorage.getItem('visitorClientId');
-if (!clientId) {
-    clientId = Date.now().toString();
-    localStorage.setItem('visitorClientId', clientId);
-}
-
-fetch(`${API_URL}?clientId=${clientId}`)
-.then(response => {
-    if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-})
-.then(data => {
-    console.log("Data received:", data);
-    document.querySelector('#visitorCount .count').innerText = data.count;
-})
-.catch(error => {
-    console.error("Error fetching visitor count:", error);
-    document.querySelector('#visitorCount .count').innerText = '?';
-});
 
         document.addEventListener("DOMContentLoaded", function () {
             const buttonStart = document.querySelector('.button-start');
